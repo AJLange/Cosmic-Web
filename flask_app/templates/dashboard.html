@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        ComiCosmic Colony
+        ComiCosmic Colony - Admin Only
     </title>
 
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
@@ -30,14 +30,22 @@
     <div class="content">       
         <div id="content-body">
             <h2 class="content-header">News</h2>
-                <div class="content-text">
+            <p>Logged in as {{user.user_name}}</p>
+            <div><a href="/addpost">Add New Post</a></div>
 
-                    {% for post in posts %}                    
-                    <h2>{{ post.header }}</h2>
-                    <div>{{ post.message }}</div>
-                    <div>Date: {{post.created_on.strftime('%b %d %Y')}}</div>
-                    {% endfor %}
-                </div>            
+            <div></div>
+            <p class="content-text">
+                {% for post in posts %}
+                <div>
+                <p>Posted By: {{ post.posted_by}}</p>
+                <p>On: {{post.created_on.strftime('%b %d %Y')}}</p>
+                <p>Header: {{ post.header }}</p>
+                <p>Message: {{ post.message }}</p>
+                <a href="/edit/{{post.id}}">Edit This Post</a>
+                <a href="/delete/{{post.id}}">Delete This Post</a>
+                </div>
+                {% endfor %}
+            </p>            
         </div>
         
     </div>

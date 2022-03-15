@@ -4,7 +4,7 @@ from flask_app.models.user import User
 from flask import flash
 
 class Page:
-    db = ("cosmicSite")
+    db = ("cosmic")
     def __init__(self, data):
         self.id = data['id']
         self.header = data['header']
@@ -25,7 +25,7 @@ class Page:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO posts(header,message) VALUES (%(header)s,%(message)s);"
+        query = "INSERT INTO posts(header,message,posted_by) VALUES (%(header)s,%(message)s,%(posted_by)s);"
         result = connectToMySQL(User.db).query_db(query, data)
         return result
 
@@ -44,3 +44,12 @@ class Page:
     def update(cls,data):
         query = "UPDATE posts SET header =%(header)s, message= %(message)s, posted_by= %(posted_by)s, updated_on = NOW() WHERE id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query,data)
+
+    @classmethod
+    def get_posts_from_user(cls):
+        query = "SELECT * FROM posts LEFT JOIN users ON posts.posted_by = users.id WHERE users.id = %(id)s;"
+        results = connectToMySQL(User.db).query_db(query)
+        posts = []
+        for a in results:
+            posts.append(cls(a))
+        return posts

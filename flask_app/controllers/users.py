@@ -6,10 +6,6 @@ from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 
-@app.route('/')        
-def index():
-    return render_template('index.html')
-
 @app.route('/login-admin')        
 def admin():
     return render_template('login.html')
@@ -23,14 +19,13 @@ def register():
         pw_hash = bcrypt.generate_password_hash(request.form['password'])
         print(pw_hash)
         data = {
-            "first_name": request.form['first_name'],
-            "last_name": request.form['last_name'],
+            "user_name": request.form['user_name'],
             "email": request.form['email'],
             "password": pw_hash
         }
         user_id = User.save(data)
         session['user_id'] = user_id
-    return redirect('/')
+    return redirect('/dashboard')
 
 @app.route('/login' , methods=["POST"])        
 def login():
@@ -44,8 +39,11 @@ def login():
         return redirect('/')
     else: #no errors
         session['user_id'] = user.id
-    return redirect('/')
+    return redirect('/dashboard')
 
+@app.route('/newpost')
+def newpost():
+    return render_template('create.html')
 
 @app.route('/logout')        
 def logout():

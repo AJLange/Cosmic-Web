@@ -5,14 +5,15 @@ from flask import flash
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+'''
 PSW_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')
+'''
 
 class User:
-    db = ("cosmicSite")
+    db = ("cosmic")
     def __init__(self, data):
         self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
+        self.user_name = data['user_name']
         self.email = data['email']
         self.password = data['password']
         self.created_on = data['created_on']
@@ -30,7 +31,7 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users(first_name,last_name,email,password) VALUES (%(first_name)s,%(last_name)s, %(email)s, %(password)s);"
+        query = "INSERT INTO users(user_name,email,password) VALUES (%(user_name)s, %(email)s, %(password)s);"
         result = connectToMySQL(User.db).query_db(query, data)
         return result
 
@@ -56,16 +57,14 @@ class User:
 
     @staticmethod
     def validate_reg(user):
+        print("does this run?")
         is_valid = True # we assume this is true
         results = connectToMySQL(User.db).query_db("SELECT * FROM users WHERE email = %(email)s;", user)
         if len(results) >=1:
             flash("Email already registered", "register")
             is_valid = False
-        if len(user['first_name']) < 2:
-            flash("First name must be at least 2 characters.", "register")
-            is_valid = False
-        if len(user['last_name']) < 2:
-            flash("Last name must be at least 2 characters.", "register")
+        if len(user['user_name']) < 2:
+            flash("Username must be at least 2 characters.", "register")
             is_valid = False
         if len(user['password']) < 8:
             flash("Password should be at least 8 chars", "register")
@@ -76,9 +75,11 @@ class User:
         if not EMAIL_REGEX.match(user['email']):
             flash("Invalid Email address!", "register")
             is_valid = False
+            '''
         if not PSW_REGEX.match(user['password']):
             flash("Passwords must contain lowercase letter, one uppercase, and one number", "register")
             is_valid = False
+            '''
         return is_valid
 
     @staticmethod

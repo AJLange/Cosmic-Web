@@ -2,19 +2,50 @@
 <html>
 <head>
     <title>
-        ComiCosmic - Create News Post
+        Make a News Post
     </title>
 
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-
+    
     
 </head>
 <body>
 
-    <div class="d-flex justify-content-around">
-        Content Goes Here
-  </div>
+    <div id="page">
+        <div class="nav">
+            <div class="header-left">
+                <div class="header-image"><a href="/"><img src="{{url_for('static', filename='face.png')}}" /></a></div>
+                <div class="nav-title"><a href="/">ComiCosmic</a></div>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-links" href="/talent">Talent</a>
+                <a class="nav-links" href="/about">About</a>
+                <a class="nav-links" href="/policy">Policy</a>
+                <a class="nav-links" href="/contact">Contact</a>
+            </div>
+        </div>
+    
+    
+        <div class="content">
+            
+            <div id="content-body">
+                <h1 class="content-header">Contact Us</h1>
+                <div class="submit-form">
+                    <form class="submit-form" action="/create" method="post">
+                        <label for="header" class="form-label">Header:</label>
+                        <input type="text" name="header" class="form-input"></input>
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea name="message" class="form-input"></textarea>
+                        <button class="btn" name="submit">Submit</button>
+                        <input type="hidden" name="posted_by" value={{session.user_id}}>
+                    </form>
+                </div>
+            </div>
+            
 
-
+        </div>
+        
+    
+    </div>
 </body>
 </html>
