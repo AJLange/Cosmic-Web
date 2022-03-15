@@ -2,20 +2,43 @@
 <html>
 <head>
     <title>
-        ComiCosmic - Talent
+        Talent
     </title>
 
- 
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-
+    
     
 </head>
 <body>
 
-    <div class="d-flex justify-content-around">
-        Content Goes Here
-  </div>
+    <div id="page">
+        <div class="nav">
+            <div class="header-left">
+                <div class="header-image"><a href="/"><img src="{{url_for('static', filename='face.png')}}"  /></a></div>
+                <div class="nav-title"><a href="/">ComiCosmic</a></div>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-links" href="/talent">Talent</a>
+                <a class="nav-links" href="/about">About</a>
+                <a class="nav-links" href="/policy">Policy</a>
+                <a class="nav-links" href="/contact">Contact</a>
+            </div>
+        </div>
+    
+    
+        <div class="content">
+            <div id="content-sidebar">
+                <div class="header-image"><img src="{{url_for('static', filename='face.png')}}"  /></div>
+ 
+            </div>
+            <div id="content-body">
+                <h1 class="content-header">Lita's Page</h1>
+                <p class="content-text"><a href="/member-1">Click here</a> to see info on Lita</p>
+            </div>
 
-
+        </div>
+        
+    
+    </div>
 </body>
 </html>

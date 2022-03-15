@@ -5,17 +5,47 @@
         Contact ComiCosmic Colony
     </title>
 
-
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-
+    
     
 </head>
 <body>
 
-    <div class="d-flex justify-content-around">
-        Content Goes Here
-  </div>
+    <div id="page">
+        <div class="nav">
+            <div class="header-left">
+                <div class="header-image"><a href="/"><img src="{{url_for('static', filename='face.png')}}" align="middle" /></a></div>
+                <div class="nav-title"><a href="/">ComiCosmic</a></div>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-links" href="/talent">Talent</a>
+                <a class="nav-links" href="/about">About</a>
+                <a class="nav-links" href="/policy">Policy</a>
+                <a class="nav-links" href="/contact">Contact</a>
+            </div>
+        </div>
+    
+    
+        <div class="content">
+            
+            <div id="content-body">
+                <h1 class="content-header">Contact Us</h1>
+                <div class="submit-form">
+                    <form class="submit-form">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" name="name" class="form-input"></input>
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" name="email" class="form-input"></input>
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea name="message" class="form-input"></textarea>
+                        <button class="btn">Submit</button>
+                    </form>
+                </div>
+            </div>
 
-
+        </div>
+        
+    
+    </div>
 </body>
 </html>

@@ -2,19 +2,43 @@
 <html>
 <head>
     <title>
-        Login TV
+        ComiCosmic Colony
     </title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     
 </head>
 <body>
+<div id="page">
+    <div class="nav">
+        <div class="header-left">
+            <div class="header-image"><a href="/"><img src="{{url_for('static', filename='face.png')}}"  /></a></div>
+            <div class="nav-title"><a href="/">ComiCosmic</a></div>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-links" href="/talent">Talent</a>
+            <a class="nav-links" href="/about">About</a>
+            <a class="nav-links" href="/policy">Policy</a>
+            <a class="nav-links" href="/contact">Contact</a>
+        </div>
+    </div>
 
-    <div class="d-flex justify-content-around">
-        Content Goes Here
-  </div>
+    <div class="hero-image">
+        <img class="hero-image" src="{{url_for('static', filename='face.png')}}"  />
+    </div>
 
+    <div class="content">       
+        <div id="content-body">
+            <h2 class="content-header">News</h2>
+            <p class="content-text">
+                Content of a news post
+            </p>            
+        </div>
+        
+    </div>
+    
+
+</div>
 
 </body>
 </html>

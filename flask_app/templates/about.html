@@ -2,18 +2,43 @@
 <html>
 <head>
     <title>
-        Login TV
+        About Us
     </title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    
     
 </head>
 <body>
 
-    <div class="d-flex justify-content-around">
-          Content Goes Here
-    </div>
+    <div id="page">
+        <div class="nav">
+            <div class="header-left">
+                <a href="/"><div class="header-image"><img src="{{url_for('static', filename='face.png')}}" align="middle" /></div></a>
+                <a href="/"><div class="nav-title">ComiCosmic</div></a>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-links" href="/talent">Talent</a>
+                <a class="nav-links" href="/about">About</a>
+                <a class="nav-links" href="/policy">Policy</a>
+                <a class="nav-links" href="/contact">Contact</a>
+            </div>
+        </div>
+    
+    
+        <div class="content">
+            <div id="content-sidebar">
+                <div class="header-image"><img src="{{url_for('static', filename='face.png')}}" align="middle" /></div>
+ 
+            </div>
+            <div id="content-body">
+                <h1 class="content-header">About Us</h1>
+                <p class="content-text">This is what we're all about!</p>
+            </div>
 
+        </div>
+        
+    
+    </div>
 </body>
 </html>
