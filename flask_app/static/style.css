@@ -62,6 +62,11 @@ a {
     padding:10px;
  }
 
+a.inline-link{
+    color:black;
+    text-decoration:underline;
+}
+
 .nav-links {
     list-style-type: none;
     margin:0;
@@ -72,6 +77,16 @@ a {
     flex-direction:row;
  }
 
+ .single-post{
+     border: 1px solid black;
+     padding: 5px;
+     margin: 10px;
+     width: 600px;
+ }
+
+ .front-page-post {
+     margin-bottom: 20px;
+ }
 
  .nav-menu {
     list-style-type: none;
@@ -145,3 +160,5 @@ a {
     flex-direction:column;
     padding:10px;
 }
+
+

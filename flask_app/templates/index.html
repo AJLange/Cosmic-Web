@@ -29,13 +29,13 @@
 
     <div class="content">       
         <div id="content-body">
-            <h2 class="content-header">News</h2>
+            <h1>News</h1>
                 <div class="content-text">
 
                     {% for post in posts %}                    
-                    <h2>{{ post.header }}</h2>
-                    <div>{{ post.message }}</div>
-                    <div>Date: {{post.created_on.strftime('%b %d %Y')}}</div>
+                    <h2  class="content-header">{{ post.header }}</h2>
+                    <div class="front-page-post">{{ post.message }}</div>
+                    <div class="front-page-post">Date: {{post.created_on.strftime('%b %d %Y')}}</div>
                     {% endfor %}
                 </div>            
         </div>

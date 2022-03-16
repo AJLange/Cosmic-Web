@@ -1,9 +1,11 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
+import requests
 from flask_app.models.user import User
 from flask_app.models.page import Page
-from flask import render_template,redirect,request, session, flash
-
+from flask import render_template,redirect,request, session, make_response, jsonify
+import os
+print( os.environ.get("FLASK_APP_API_KEY") )
 
 @app.route('/')        
 def index():
@@ -31,7 +33,9 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/member-1')        
-def member1():    
+def member1():
+    jsonData = searching()
+    print(jsonData)
     return render_template('member-l.html')
 
 
@@ -59,14 +63,15 @@ def delete_post(id):
 
 @app.route('/dashboard')        
 def dashboard(): 
-    '''
+    
     if 'user_id' not in session:
         return redirect('/logout')
-    '''
+    
     data = {
-        "id": id
-    }    
-    user= User.get_by_id(data)
+        'id': session['user_id']
+    }  
+    user = User.get_by_id(data)
+
     posts = Page.get_posts()
     return render_template('dashboard.html', user=user, posts=posts)
 
@@ -105,5 +110,17 @@ def update():
     return redirect('/dashboard')
 
 
+@app.route('/get_data')
+def get_data():
+    # jsonify will serialize data into JSON format.
+    return jsonify(message="Hello World")
 
-
+@app.route('/calendar')
+def searching():
+    url = "https://api.twitch.tv/helix/schedule?broadcaster_id=40091555"
+    headers = {
+            "Authorization": f"Bearer {os.environ.get('FLASK_API_KEY')}",
+            "Client-Id": f"{os.environ.get('FLASK_CLIENT_ID')}"
+    }
+    r = requests.get(url, headers=headers)
+    return jsonify( r.json() )

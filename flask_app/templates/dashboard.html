@@ -23,26 +23,24 @@
         </div>
     </div>
 
-    <div class="hero-image">
-        <img class="hero-image" src="{{url_for('static', filename='face.png')}}"  />
-    </div>
+
 
     <div class="content">       
         <div id="content-body">
-            <h2 class="content-header">News</h2>
+            <h2 class="content-header">All News</h2>
             <p>Logged in as {{user.user_name}}</p>
-            <div><a href="/addpost">Add New Post</a></div>
+            <div><a href="/addpost" class="inline-link">Add New Post</a></div>
 
             <div></div>
             <p class="content-text">
                 {% for post in posts %}
-                <div>
-                <p>Posted By: {{ post.posted_by}}</p>
+                <div class="single-post">
+                <p>Posted By: {{ post.posted_by }}</p>
                 <p>On: {{post.created_on.strftime('%b %d %Y')}}</p>
                 <p>Header: {{ post.header }}</p>
                 <p>Message: {{ post.message }}</p>
-                <a href="/edit/{{post.id}}">Edit This Post</a>
-                <a href="/delete/{{post.id}}">Delete This Post</a>
+                <a href="/edit/{{post.id}}" class="inline-link">Edit This Post</a>
+                <a href="/delete/{{post.id}}" class="inline-link">Delete This Post</a>
                 </div>
                 {% endfor %}
             </p>            
