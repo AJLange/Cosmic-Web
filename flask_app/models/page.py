@@ -16,7 +16,7 @@ class Page:
 
     @classmethod
     def get_posts(cls):
-        query = "SELECT * FROM posts;"
+        query = "SELECT * FROM posts ORDER BY created_on DESC;"
         results = connectToMySQL(User.db).query_db(query)
         posts = []
         for a in results:
@@ -53,3 +53,11 @@ class Page:
         for a in results:
             posts.append(cls(a))
         return posts
+
+
+    @classmethod
+    def post_feedback(cls, data):
+        query = "INSERT INTO feedback(name,message,email) VALUES (%(name)s,%(message)s,%(email)s);"
+        result = connectToMySQL(User.db).query_db(query, data)
+        return result
+

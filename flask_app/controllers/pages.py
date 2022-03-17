@@ -10,11 +10,17 @@ print( os.environ.get("FLASK_APP_API_KEY") )
 
 @app.route('/')        
 def index():
-    data = {
-        "id": id
-    }    
+    if 'user_id' in session:   
+        data = {
+            'id': session['user_id']
+        } 
+    else:
+        data = {
+            'id': 0
+        } 
+    user = User.get_by_id(data)
     posts = Page.get_posts()
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', posts=posts, user=user)
 
 @app.route('/talent')        
 def talent():    

@@ -37,7 +37,12 @@
                     <div class="front-page-post">{{ post.message }}</div>
                     <div class="front-page-post">Date: {{post.created_on.strftime('%b %d %Y')}}</div>
                     {% endfor %}
-                </div>            
+                </div>         
+                <div>
+                    {% if user %}
+                    <a href='/dashboard'>Admin page</a>
+                    {% endif %}
+                </div>   
         </div>
         
     </div>
