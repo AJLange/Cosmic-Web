@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
+import json
 import requests
 from flask_app.models.user import User
 from flask_app.models.page import Page
@@ -31,13 +32,6 @@ def policy():
 @app.route('/contact')        
 def contact():    
     return render_template('contact.html')
-
-@app.route('/member-1')        
-def member1():
-    jsonData = searching()
-    print(jsonData)
-    return render_template('member-l.html')
-
 
 @app.route('/edit/<int:id>')
 def edit_post(id):
@@ -109,18 +103,28 @@ def update():
     Page.update(data)
     return redirect('/dashboard')
 
-
-@app.route('/get_data')
-def get_data():
-    # jsonify will serialize data into JSON format.
-    return jsonify(message="Hello World")
-
-@app.route('/calendar')
-def searching():
+@app.route('/member-1')        
+def member1():
     url = "https://api.twitch.tv/helix/schedule?broadcaster_id=40091555"
     headers = {
             "Authorization": f"Bearer {os.environ.get('FLASK_API_KEY')}",
             "Client-Id": f"{os.environ.get('FLASK_CLIENT_ID')}"
     }
     r = requests.get(url, headers=headers)
-    return jsonify( r.json() )
+    data = json.loads(r.content)
+    return render_template('member-l.html', data=data)
+
+'''
+
+#This was just to test, commenting it out for now
+
+@app.route('/calendar')
+def calendar_get():
+    url = "https://api.twitch.tv/helix/schedule?broadcaster_id=40091555"
+    headers = {
+            "Authorization": f"Bearer {os.environ.get('FLASK_API_KEY')}",
+            "Client-Id": f"{os.environ.get('FLASK_CLIENT_ID')}"
+    }
+    r = requests.get(url, headers=headers)
+    return jsonify( r.json() )  
+'''

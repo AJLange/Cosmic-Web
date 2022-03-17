@@ -34,7 +34,16 @@
             <div id="content-body">
                 Lita's stream can be found at <a href="http://twitch.tv/litagemini">Twitch.TV/Litagemini</a>
                 On Twitter: <a href="http://www.twitter.com/lita_gemini">Lita_gemini</a>
+            
             </div>
+            <div class="block-content">
+                {% for event in data.data.segments %}
+                <div> {{ event.start_time }}</div>
+                   <div> {{ event.title }}</div>
+                   {{ event.category.name }}
+
+                {% endfor %}
+            </div> 
 
         </div>
         
