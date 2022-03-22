@@ -29,14 +29,14 @@
         <div id="content-body">
             <h2 class="content-header">All News</h2>
             <p>Logged in as {{user.user_name}}</p>
-            <p><a href="/logout">Log Out</a></p>
-            <div><a href="/addpost" class="inline-link">Add New Post</a></div>
+            <p><a href="/logout" class="dark-link">Log Out</a></p>
+            <div><a href="/addpost" class="dark-link">Add New Post</a></div>
 
             <div></div>
             <p class="content-text">
                 {% for post in posts %}
                 <div class="single-post">
-                <p>Posted By: {{ post.posted_by }}</p>
+                <p>Posted By: {{ post.user_name }}</p>
                 <p>On: {{post.created_on.strftime('%b %d %Y')}}</p>
                 <p>Header: {{ post.header }}</p>
                 <p>Message: {{ post.message }}</p>

@@ -47,6 +47,14 @@
     justify-content: flex-start;
 }
 
+a.dark-link {
+    text-decoration:none;
+    font-weight:bold;
+    color:blue;
+    border: 1px solid black;
+    padding: 3px;
+}
+
 
 a {
     color:lightgray;
@@ -77,6 +85,12 @@ a.inline-link{
     flex-direction:row;
  }
 
+ .bio-image{
+     height: 300px;
+     border: 1px solid black;
+     padding:0;
+ }
+
  .single-post{
      border: 1px solid black;
      padding: 5px;
@@ -104,6 +118,34 @@ a.inline-link{
     display:flex;
     flex-direction: row;
 }
+
+.calendar{
+    background-color:white;
+    color:black;
+    display:flex;
+    flex-direction: column;
+}
+
+.calendar-item{
+    background-color:white;
+    color:black;
+    display:flex;
+    flex-direction: column;
+}
+
+
+.calendar-title{
+    background-color:white;
+    color:black;
+    display:flex;
+    flex-direction: column;
+    font-weight:bold;
+}
+
+.calendar-block{
+    margin-bottom:20px;
+}
+
 
 .content-header
 {

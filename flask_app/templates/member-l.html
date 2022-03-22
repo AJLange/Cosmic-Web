@@ -28,19 +28,20 @@
     
         <div class="content">
             <div id="content-sidebar">
-                <div class="header-image"><img src="{{url_for('static', filename='smile.png')}}"  /></div>
+                <div class="header-image"><img src="{{url_for('static', filename='lita_face.png')}}" class="bio-image" /></div>
 
             </div>
             <div id="content-body">
-                Lita's stream can be found at <a href="http://twitch.tv/litagemini">Twitch.TV/Litagemini</a>
-                On Twitter: <a href="http://www.twitter.com/lita_gemini">Lita_gemini</a>
-                <p>&nbsp;</p>
-                <div class="block-content">
+                <p>Lita's stream can be found at <a href="http://twitch.tv/litagemini" class="inline-link">Twitch.TV/Litagemini</a></p>
+                <p>On Twitter: <a href="http://www.twitter.com/lita_gemini" class="inline-link">Lita_gemini</a></p>
+                
+                <div class="calendar">
                     {% for event in data.data.segments %}
-                    <div> {{ event.start_time }}</div>
-                       <div> {{ event.title }}</div>
-                       {{ event.category.name }}
-    
+                    <div class="calendar-block">
+                        <div class="calendar-item"> {{ event.start_time }}</div>
+                        <div class="calendar-title">  {{ event.title }}</div>
+                        <div class="calendar-item"> {{ event.category.name }}</div>
+                    </div>
                     {% endfor %}
                 </div> 
             </div>

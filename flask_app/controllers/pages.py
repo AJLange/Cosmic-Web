@@ -1,11 +1,14 @@
+from xmlrpc.client import _iso8601_format
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 import json
 import requests
 from flask_app.models.user import User
 from flask_app.models.page import Page
-from flask import render_template,redirect,request, session, make_response, jsonify
-import os
+from flask import render_template,redirect,request, session, jsonify
+import os 
+import datetime
+import iso8601
 print( os.environ.get("FLASK_APP_API_KEY") )
 
 @app.route('/')        
@@ -19,7 +22,7 @@ def index():
             'id': 0
         } 
     user = User.get_by_id(data)
-    posts = Page.get_posts()
+    posts = Page.get_posts_users()
     return render_template('index.html', posts=posts, user=user)
 
 @app.route('/talent')        
@@ -71,8 +74,7 @@ def dashboard():
         'id': session['user_id']
     }  
     user = User.get_by_id(data)
-
-    posts = Page.get_posts()
+    posts = Page.get_posts_users()
     return render_template('dashboard.html', user=user, posts=posts)
 
 
@@ -118,9 +120,14 @@ def member1():
     }
     r = requests.get(url, headers=headers)
     data = json.loads(r.content)
-    return render_template('member-l.html', data=data)
+    print(data)
 
-'''
+    date = date_clean("2018-09-07T04:57:58.050-07:00")
+    return render_template('member-l.html', data=data, date=date)
+
+def date_clean(data):
+    date_obj=iso8601.parse_date(data)
+    return date_obj
 
 #This was just to test, commenting it out for now
 
@@ -133,4 +140,3 @@ def calendar_get():
     }
     r = requests.get(url, headers=headers)
     return jsonify( r.json() )  
-'''
