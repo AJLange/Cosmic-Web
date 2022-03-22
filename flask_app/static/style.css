@@ -6,7 +6,7 @@
 
 .nav{
     font-family: 'Roboto', sans-serif;
-    background-color:darkslateblue;
+    background-color:steelblue;
     width:auto;
     margin: 20px auto;
     padding: 10px;
@@ -20,7 +20,7 @@
 
 .header-left{
     font-family: 'Roboto', sans-serif;
-    background-color:darkslateblue;
+    background-color:steelblue;
     flex-direction:row;
     color:white;
     display:flex;
@@ -33,7 +33,8 @@
     align-items: center;
     justify-content: flex-start;
     margin:10px;
-    font-size: large;
+    margin-left:20px;
+    font-size: 30pt;    
 }
 
 .header-image {
@@ -131,6 +132,10 @@ a.inline-link{
     color:black;
     display:flex;
     flex-direction: column;
+}
+
+.home-image{
+    height:100px;
 }
 
 
